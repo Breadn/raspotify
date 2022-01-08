@@ -31,8 +31,7 @@ def main():
     splashscreen("0.01")
 
     music_dir = "music"
-    pre_ext = ".m4a"
-    ref_ext = ".mp3"
+    ext = ".mp3"
     queue = []
     songset = set()
     volume = 0.05
@@ -71,7 +70,7 @@ def main():
             ytID = "cdaKIWr4wDU"
 
             if(ytID not in songset):
-                sl.loadsong(music_dir, filename, pre_ext, ref_ext, ytID)
+                sl.loadsong(music_dir, filename, ext, ytID)
                 songset.add(ytID)
                 print("loading song")
             else:
