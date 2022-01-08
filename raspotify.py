@@ -72,7 +72,7 @@ async def main():
             ytID = "cdaKIWr4wDU"
 
             if(ytID not in songset):
-                asyncio.run(sl.loadsong(music_dir, filename, pre_ext, ref_ext, ytID))
+                asyncio.gather(sl.loadsong(music_dir, filename, pre_ext, ref_ext, ytID))
                 songset.add(ytID)
                 print("loading song")
             else:
