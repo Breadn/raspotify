@@ -10,7 +10,7 @@ def splashscreen(ver):
     print("queue - lists queue")
     print("search - search for song to enqueue")
     print("exit - exit program")
-    print("=========================")
+    print("========================")
 
 
 def exit_raspotify(music_dir):
@@ -33,17 +33,15 @@ def main():
     action = ""
 
     while(action.lower() != "exit"):
-        print(action)
 
-        # do stuff
         if(action == "play"):
             if(queue):
                 song_path = f"{music_dir}/{queue[0]}{ref_ext}"
                 if(os.path.isfile(song_path)):
-                    cmd = f"play {song_path}"
+                    cmd = f"play -v {volume} {song_path}"
                     subprocess.Popen(cmd, shell=True, stdout=subprocess.DEVNULL)
-                    queue.pop(0)
                     print(f"Playing queue: {queue[0]}")
+                    queue.pop(0)
                 else:
                     print(f"{song_path} not yet loaded")
             else:
