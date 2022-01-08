@@ -28,7 +28,7 @@ def exit_raspotify(music_dir):
     print("Goodbye.")
 
 
-def main():
+async def main():
     splashscreen("0.01")
 
     music_dir = "music"
@@ -72,7 +72,7 @@ def main():
             ytID = "cdaKIWr4wDU"
 
             if(ytID not in songset):
-                asyncio.run(sl.loadsong(music_dir, filename, pre_ext, ref_ext, ytID))
+                await sl.loadsong(music_dir, filename, pre_ext, ref_ext, ytID)
                 songset.add(ytID)
                 print("loading song")
             else:
