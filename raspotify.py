@@ -13,9 +13,10 @@ def splashscreen(ver):
     print("=========================")
 
 
-def exit_raspotify():
-    if(os.path.isdir("./music")):
-        cmd = f"rm -rf {os.getcwd()}/music/*"
+def exit_raspotify(music_dir):
+
+    if(os.path.isdir(f"./{music_dir}") and os.listdir(f"./{music_dir}")):
+        cmd = f"rm -rf {os.getcwd()}/{music_dir}/*"
         subprocess.Popen(cmd, stdout=subprocess.DEVNULL)
     print("Goodbye.")
 
@@ -23,7 +24,7 @@ def exit_raspotify():
 def main():
     splashscreen("0.01")
 
-    path = "music"
+    music_dir = "music"
     pre_ext = ".m4a"
     ref_ext = ".mp3"
     queue = []
@@ -37,7 +38,7 @@ def main():
         # do stuff
         if(action == "play"):
             if(queue):
-                song_path = f"{path}/{queue[0]}{ref_ext}"
+                song_path = f"{music_dir}/{queue[0]}{ref_ext}"
                 if(os.path.isfile(song_path)):
                     cmd = f"play {song_path}"
                     subprocess.Popen(cmd, stdout=subprocess.DEVNULL)
@@ -63,7 +64,7 @@ def main():
             ytID = "cdaKIWr4wDU"
 
             if(ytID not in songset):
-                cmd = f"youtube-dl -o {path}/{filename}{pre_ext} -f 140 https://www.youtube.com/watch?v={ytID}; ffmpeg -i {path}/{filename}{pre_ext} -c:v copy -c:a libmp3lame -q:a 4 {path}/{filename}{ref_ext}; rm -rf {path}/{filename}{pre_ext}"
+                cmd = f"youtube-dl -o {music_dir}/{filename}{pre_ext} -f 140 https://www.youtube.com/watch?v={ytID}; ffmpeg -i {music_dir}/{filename}{pre_ext} -c:v copy -c:a libmp3lame -q:a 4 {music_dir}/{filename}{ref_ext}; rm -rf {music_dir}/{filename}{pre_ext}"
                 subprocess.Popen(cmd, shell=True, stdout=subprocess.DEVNULL)
                 songset.add(ytID)
                 print("loading song")
@@ -75,7 +76,7 @@ def main():
         print(": ", end='')
         action = input().lower()
     
-    exit_raspotify()
+    exit_raspotify(music_dir)
 
 
 
