@@ -1,2 +1,2 @@
 # raspotify
-a Python RPi music player script based on youtube-dl
+a Python based Raspberry Pi music player script powered through youtube-dl
