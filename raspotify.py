@@ -39,6 +39,8 @@ async def main():
     volume = 0.05
     action = ""
 
+    loop = asyncio.get_event_loop
+
     while(action.lower() != "exit"):
 
         if(action == "play"):
@@ -72,7 +74,8 @@ async def main():
             ytID = "cdaKIWr4wDU"
 
             if(ytID not in songset):
-                await asyncio.gather(sl.loadsong(music_dir, filename, pre_ext, ref_ext, ytID))
+                proc = asyncio.gather(sl.loadsong(music_dir, filename, pre_ext, ref_ext, ytID))
+                loop.run_until_complete(proc)
                 songset.add(ytID)
                 print("loading song")
             else:
