@@ -13,7 +13,7 @@ def splashscreen(ver):
 
 def exit_raspotify():
     if(os.path.isdir("./music")):
-        cmd = "rm -rf music/*"
+        cmd = "rm -rf ./music/*"
         subprocess.Popen(cmd, stdout=subprocess.DEVNULL)
     print("Goodbye.")
 
@@ -33,13 +33,14 @@ def main():
 
         # do stuff
         if(action.lower() == "play"):
-            if(queue):
-                cmd = "play music/Kyoto.mp3"
+            song_path = f"{path}/{queue[0]}{ref_ext}"
+            if(os.path.isfile(song_path)):
+                cmd = f"play {song_path}"
                 subprocess.Popen(cmd, stdout=subprocess.DEVNULL)
                 queue.pop(0)
-                print("Playing queue")
+                print(f"Playing queue: {queue[0]}")
             else:
-                print("No songs in queue")
+                print("No songs loaded in queue")
         
         elif(action.lower() == "queue"):
             print(queue)
@@ -50,14 +51,12 @@ def main():
 
             if(ytID not in songset):
                 cmd = f"youtube-dl -o {path}/{filename}{pre_ext} -f 140 https://www.youtube.com/watch?v={ytID}; ffmpeg -i {path}/{filename}{pre_ext} -c:v copy -c:a libmp3lame -q:a 4 {path}/{filename}{ref_ext}; rm -rf {path}/{filename}{pre_ext}"
-                print(cmd)
                 subprocess.Popen(cmd, shell=True, stdout=subprocess.DEVNULL)
+                songset.add(ytID)
                 print("loading song")
             else:
                 print("queueing cached song")
-
             queue.append(filename)
-            songset.add(ytID)
 
 
         print(": ", end='')
