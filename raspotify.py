@@ -11,6 +11,8 @@ def splashscreen(ver):
 
 
 def exit_raspotify():
+    cmd = "rm -rf music/*"
+    subprocess.Popen(cmd, stdout=subprocess.DEVNULL)
     print("Goodbye.")
 
 
