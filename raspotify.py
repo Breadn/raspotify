@@ -11,10 +11,7 @@ def splashscreen(ver):
 
 
 def exit_raspotify():
-    print("asynch?")
-    cmd = "youtube-dl -o music/%(title)s.%(ext)s -f 140 https://www.youtube.com/watch?v=cdaKIWr4wDU"
-    subprocess.Popen(cmd.split())
-    print("yup")
+    print("Goodbye.")
 
 
 def main():
@@ -23,10 +20,13 @@ def main():
     queue = []
     action = ""
 
-    while(action != "exit"):
+    while(action.lower() != "exit"):
         print(action)
 
         # do stuff
+        if(action.lower() == "search"):
+            cmd = "youtube-dl -o music/%(title)s.%(ext)s -f 140 https://www.youtube.com/watch?v=cdaKIWr4wDU"
+            subprocess.Popen(cmd.split())
 
         print(": ", end='')
         action = input()
