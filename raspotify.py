@@ -33,10 +33,13 @@ def main():
 
         # do stuff
         if(action.lower() == "play"):
-            cmd = "play music/Kyoto.mp3"
-            subprocess.Popen(cmd, stdout=subprocess.DEVNULL)
-            queue.pop(0)
-            print("Playing queue")
+            if(queue):
+                cmd = "play music/Kyoto.mp3"
+                subprocess.Popen(cmd, stdout=subprocess.DEVNULL)
+                queue.pop(0)
+                print("Playing queue")
+            else:
+                print("No songs in queue")
         
         elif(action.lower() == "queue"):
             print(queue)
