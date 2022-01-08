@@ -1,3 +1,4 @@
+import os
 import subprocess
 
 
@@ -11,8 +12,9 @@ def splashscreen(ver):
 
 
 def exit_raspotify():
-    cmd = "rm -rf music/*"
-    subprocess.Popen(cmd, stdout=subprocess.DEVNULL)
+    if(os.path.isdir("./music")):
+        cmd = "rm -rf music/*"
+        subprocess.Popen(cmd, stdout=subprocess.DEVNULL)
     print("Goodbye.")
 
 
