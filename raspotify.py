@@ -6,6 +6,7 @@ def splashscreen(ver):
     print("\n\n\n")
     print(f"=== Raspotify v{ver} ===")
     print("play - plays available queue")
+    print("volume <factor> - adjust volume between factor of [1..0]")
     print("queue - lists queue")
     print("search - search for song to enqueue")
     print("exit - exit program")
@@ -14,7 +15,7 @@ def splashscreen(ver):
 
 def exit_raspotify():
     if(os.path.isdir("./music")):
-        cmd = "rm -rf ./music/*"
+        cmd = f"rm -rf {os.getcwd()}/music/*"
         subprocess.Popen(cmd, stdout=subprocess.DEVNULL)
     print("Goodbye.")
 
@@ -27,13 +28,14 @@ def main():
     ref_ext = ".mp3"
     queue = []
     songset = set()
+    volume = 0.05
     action = ""
 
     while(action.lower() != "exit"):
         print(action)
 
         # do stuff
-        if(action.lower() == "play"):
+        if(action == "play"):
             if(queue):
                 song_path = f"{path}/{queue[0]}{ref_ext}"
                 if(os.path.isfile(song_path)):
@@ -46,10 +48,17 @@ def main():
             else:
                 print("No songs in queue")
         
-        elif(action.lower() == "queue"):
+        elif(action == "volume"):
+            if(isinstance(action.split()[1], float)):
+                volume = action.split()[1]
+                print(f"Volume set to {volume}")
+            else:
+                print("Invalid volume")
+        
+        elif(action == "queue"):
             print(queue)
 
-        elif(action.lower() == "search"):
+        elif(action == "search"):
             filename = "Kyoto"
             ytID = "cdaKIWr4wDU"
 
@@ -64,7 +73,7 @@ def main():
 
 
         print(": ", end='')
-        action = input()
+        action = input().lower()
     
     exit_raspotify()
 
