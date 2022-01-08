@@ -6,7 +6,7 @@ POLL_DELAY: int = 10
 
 async def _execute(cmds: list):
     for cmd in cmds:
-        subprocess.run(cmd, stdout=subprocess.DEVNULL)
+        subprocess.run(cmd, shell=True, stdout=subprocess.DEVNULL)
 
 def loadsong(music_dir, filename, pre_ext, ref_ext, ytID):
     cmds = []
