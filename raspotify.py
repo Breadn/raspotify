@@ -17,7 +17,11 @@ def exit_raspotify():
 def main():
     splashscreen("0.01")
 
+    path = "music"
+    pre_ext = ".m4a"
+    ref_ext = ".mp3"
     queue = []
+    songset = set()
     action = ""
 
     while(action.lower() != "exit"):
@@ -25,8 +29,21 @@ def main():
 
         # do stuff
         if(action.lower() == "search"):
-            cmd = "youtube-dl -o music/%(title)s.%(ext)s -f 140 https://www.youtube.com/watch?v=cdaKIWr4wDU"
-            subprocess.Popen(cmd.split())
+            
+            filename = "Kyoto"
+            ytID = "cdaKIWr4wDU"
+
+            if(ytID not in songset):
+                cmd = f"youtube-dl -o {path}/{filename}{pre_ext} -f 140 https://www.youtube.com/watch?v={ytID};\
+                    ffmpeg -i {filename}{pre_ext} -c:v copy -c:a libmp3lame -q:a 4 {filename}{ref_ext}"
+                subprocess.Popen(cmd.split(), stdout=subprocess.DEVNULL)
+                print("loading song")
+            else:
+                print("queueing cached song")
+
+            queue.append(filename)
+            songset.add(ytID)
+
 
         print(": ", end='')
         action = input()
