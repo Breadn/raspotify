@@ -3,7 +3,7 @@ import subprocess
 
 
 async def _execute_cmd(cmd):
-    subprocess.call(cmd.split())
+    subprocess.call(cmd.split(), stdout=subprocess.DEVNULL)
     return
 
 async def loadsong(music_dir, filename, pre_ext, ref_ext, ytID):
@@ -16,7 +16,7 @@ async def loadsong(music_dir, filename, pre_ext, ref_ext, ytID):
     await _execute_cmd(cmd)
 
     # Song conversion
-    cmd = f"ffmpeg -i {presong_file} -c:v copy -c:a libmp3lame -q:a 4 {refsong_file}"
+    cmd = f"ffmpeg -i {presong_file} -q:a 4 {refsong_file}"
     print(f"Converting song {presong_file} to mp3...")
     await _execute_cmd(cmd)
 
