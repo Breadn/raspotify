@@ -3,6 +3,7 @@ import subprocess
 
 
 def splashscreen(ver):
+    print("\n\n\n")
     print(f"=== Raspotify v{ver} ===")
     print("play - plays available queue")
     print("queue - lists queue")
@@ -33,14 +34,17 @@ def main():
 
         # do stuff
         if(action.lower() == "play"):
-            song_path = f"{path}/{queue[0]}{ref_ext}"
-            if(queue and os.path.isfile(song_path)):
-                cmd = f"play {song_path}"
-                subprocess.Popen(cmd, stdout=subprocess.DEVNULL)
-                queue.pop(0)
-                print(f"Playing queue: {queue[0]}")
+            if(queue):
+                song_path = f"{path}/{queue[0]}{ref_ext}"
+                if(os.path.isfile(song_path)):
+                    cmd = f"play {song_path}"
+                    subprocess.Popen(cmd, stdout=subprocess.DEVNULL)
+                    queue.pop(0)
+                    print(f"Playing queue: {queue[0]}")
+                else:
+                    print(f"{song_path} not yet loaded")
             else:
-                print("No songs loaded in queue")
+                print("No songs in queue")
         
         elif(action.lower() == "queue"):
             print(queue)
