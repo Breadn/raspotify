@@ -13,7 +13,8 @@ def splashscreen(ver):
 
 def exit_raspotify():
     print("asynch?")
-    subprocess.run(["youtube-dl", "-f", "140", "https://www.youtube.com/watch?v=cdaKIWr4wDU"])
+    cmd = "youtube-dl -o './music/%(title)s.%(ext)s' -f 140 'https://www.youtube.com/watch?v=cdaKIWr4wDU"
+    subprocess.run(cmd.split())
     print("yup")
 
 
