@@ -4,7 +4,7 @@ import subprocess
 def _execute_cmd(cmd):
     silentsh = subprocess.Popen("/bin/bash -i".split(), stdin=subprocess.PIPE,
                             stdout=subprocess.DEVNULL, stderr=subprocess.PIPE)
-    silentsh.stdin.write(cmd.decode())
+    silentsh.stdin.write(cmd.encode())
     silentsh.kill()
 
 
