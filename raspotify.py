@@ -20,7 +20,7 @@ def exit_raspotify(music_dir):
 
     if(os.path.isdir(f"./{music_dir}") and os.listdir(f"./{music_dir}")):
         cmd = f"rm -rf ./{music_dir}/*"
-        subprocess.run(cmd, shell=True, stdout=subprocess.DEVNULL)
+        subprocess.call(cmd.split())
     print("Goodbye.")
 
 
@@ -67,9 +67,8 @@ def main():
             filename = "Kyoto"
             ytID = "cdaKIWr4wDU"
 
-            sl.loadsong(music_dir, filename, pre_ext, ref_ext, ytID)
-
             if(ytID not in songset):
+                sl.loadsong(music_dir, filename, pre_ext, ref_ext, ytID)
                 songset.add(ytID)
                 print("loading song")
             else:
