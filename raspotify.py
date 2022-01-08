@@ -21,6 +21,7 @@ def main():
     splashscreen("0.01")
 
     queue = []
+    action = ""
 
     while(action != "exit"):
         print(action)
