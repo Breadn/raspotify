@@ -1,4 +1,6 @@
 import os
+import glob
+import shutil
 import signal
 import subprocess
 
@@ -18,14 +20,11 @@ def splashscreen(ver):
 
 def exit_raspotify(music_dir):
     path = f"{os.getcwd()}/{music_dir}"
-    if(os.path.isdir(path) and os.listdir(path)):
-        cmd = "ls -l"
-        subprocess.call(cmd.split())
-        cmd = f"ls -l {path}"
-        subprocess.call(cmd.split())
-        cmd = f"rm -rf {path}/*"
-        subprocess.call(cmd.split())
-        print("erased songs")
+    for item in glob.glob(os.path.join(path, '*')):
+        if(os.path.isdir(item)):
+            shutil.rmtree(item)
+        else:
+            os.remove(item)
     print("Goodbye.")
 
 
