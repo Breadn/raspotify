@@ -1,5 +1,8 @@
 import os
+import signal
 import subprocess
+
+import songloader as sl
 
 
 def splashscreen(ver):
@@ -17,7 +20,7 @@ def exit_raspotify(music_dir):
 
     if(os.path.isdir(f"./{music_dir}") and os.listdir(f"./{music_dir}")):
         cmd = f"rm -rf ./{music_dir}/*"
-        subprocess.Popen(cmd, shell=True, stdout=subprocess.DEVNULL)
+        subprocess.run(cmd, shell=True, stdout=subprocess.DEVNULL)
     print("Goodbye.")
 
 
@@ -64,9 +67,9 @@ def main():
             filename = "Kyoto"
             ytID = "cdaKIWr4wDU"
 
+            sl.loadsong(music_dir, filename, pre_ext, ref_ext, ytID)
+
             if(ytID not in songset):
-                cmd = f"ffmpeg -i {music_dir}/{filename}{pre_ext} -c:v copy -c:a libmp3lame -q:a 4 {music_dir}/{filename}{ref_ext}; rm -rf {music_dir}/{filename}{pre_ext}"
-                subprocess.Popen(cmd, shell=True, stdout=subprocess.DEVNULL)
                 songset.add(ytID)
                 print("loading song")
             else:
