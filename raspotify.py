@@ -16,8 +16,8 @@ def splashscreen(ver):
 def exit_raspotify(music_dir):
 
     if(os.path.isdir(f"./{music_dir}") and os.listdir(f"./{music_dir}")):
-        cmd = f"rm -rf {os.getcwd()}/{music_dir}/*"
-        subprocess.Popen(cmd, stdout=subprocess.DEVNULL)
+        cmd = f"rm -rf ./{music_dir}/*"
+        subprocess.Popen(cmd, shell=True, stdout=subprocess.DEVNULL)
     print("Goodbye.")
 
 
@@ -41,7 +41,7 @@ def main():
                 song_path = f"{music_dir}/{queue[0]}{ref_ext}"
                 if(os.path.isfile(song_path)):
                     cmd = f"play {song_path}"
-                    subprocess.Popen(cmd, stdout=subprocess.DEVNULL)
+                    subprocess.Popen(cmd, shell=True, stdout=subprocess.DEVNULL)
                     queue.pop(0)
                     print(f"Playing queue: {queue[0]}")
                 else:
