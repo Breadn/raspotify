@@ -34,7 +34,7 @@ def main():
         # do stuff
         if(action.lower() == "play"):
             song_path = f"{path}/{queue[0]}{ref_ext}"
-            if(os.path.isfile(song_path)):
+            if(queue and os.path.isfile(song_path)):
                 cmd = f"play {song_path}"
                 subprocess.Popen(cmd, stdout=subprocess.DEVNULL)
                 queue.pop(0)
