@@ -50,7 +50,7 @@ def main():
                 print("No songs in queue")
         
         elif(action == "volume"):
-            if(isinstance(action.split()[1], float)):
+            if(len(action.split()) > 1 and isinstance(action.split()[1], float)):
                 volume = action.split()[1]
                 print(f"Volume set to {volume}")
             else:
