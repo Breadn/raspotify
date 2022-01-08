@@ -41,7 +41,7 @@ def main():
 
         if(action == "play"):
             if(queue):
-                song_path = f"{music_dir}/{queue[0]}{ref_ext}"
+                song_path = f"{music_dir}/{queue[0]}{ext}"
                 if(os.path.isfile(song_path)):
                     cmd = f"play -v {volume} {song_path}"
                     subprocess.Popen(cmd, shell=True, stdout=subprocess.DEVNULL)
