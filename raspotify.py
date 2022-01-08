@@ -17,10 +17,12 @@ def splashscreen(ver):
 
 
 def exit_raspotify(music_dir):
-
     if(os.path.isdir(f"./{music_dir}") and os.listdir(f"./{music_dir}")):
         cmd = f"rm -rf ./{music_dir}/*"
         subprocess.call(cmd.split())
+        print("Erased songs")
+    else:
+        print("No songs erased")
     print("Goodbye.")
 
 
