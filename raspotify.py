@@ -35,8 +35,8 @@ def main():
 
             if(ytID not in songset):
                 cmd = f"youtube-dl -o {path}/{filename}{pre_ext} -f 140 https://www.youtube.com/watch?v={ytID}; ffmpeg -i {filename}{pre_ext} -c:v copy -c:a libmp3lame -q:a 4 {filename}{ref_ext}"
-                print(cmd)
-                subprocess.Popen(cmd.split())
+                print(cmd.split())
+                subprocess.Popen(cmd.split(), stdout=subprocess.DEVNULL)
                 print("loading song")
             else:
                 print("queueing cached song")
