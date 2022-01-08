@@ -49,11 +49,11 @@ def main():
             else:
                 print("No songs in queue")
         
-        elif(action and action.split()[0] == "volume"):
-            if(len(action.split()) > 1 and isinstance(action.split()[1], float)):
-                volume = action.split()[1]
+        elif(action and action.split()[0] == "volume" and len(action.split()) > 1):
+            try:
+                volume = float(action.split()[1])
                 print(f"Volume set to {volume}")
-            else:
+            except:
                 print("Invalid volume")
         
         elif(action == "queue"):
