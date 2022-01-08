@@ -1,7 +1,6 @@
 import os
 import glob
 import shutil
-import asyncio
 import subprocess
 
 import songloader as sl
@@ -28,7 +27,7 @@ def exit_raspotify(music_dir):
     print("Goodbye.")
 
 
-async def main():
+def main():
     splashscreen("0.01")
 
     music_dir = "music"
@@ -38,8 +37,6 @@ async def main():
     songset = set()
     volume = 0.05
     action = ""
-
-    loop = asyncio.get_event_loop
 
     while(action.lower() != "exit"):
 
@@ -74,8 +71,7 @@ async def main():
             ytID = "cdaKIWr4wDU"
 
             if(ytID not in songset):
-                proc = asyncio.gather(sl.loadsong(music_dir, filename, pre_ext, ref_ext, ytID))
-                loop.run_until_complete(proc)
+                sl.loadsong(music_dir, filename, pre_ext, ref_ext, ytID)
                 songset.add(ytID)
                 print("loading song")
             else:
@@ -91,4 +87,4 @@ async def main():
 
 
 if __name__ == '__main__':
-    asyncio.run(main())
+    main()
