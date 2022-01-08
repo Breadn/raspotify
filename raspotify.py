@@ -65,7 +65,7 @@ def main():
             ytID = "cdaKIWr4wDU"
 
             if(ytID not in songset):
-                cmd = f"youtube-dl -o {music_dir}/{filename}{pre_ext} -f 140 https://www.youtube.com/watch?v={ytID}; ffmpeg -i {music_dir}/{filename}{pre_ext} -c:v copy -c:a libmp3lame -q:a 4 {music_dir}/{filename}{ref_ext}; rm -rf {music_dir}/{filename}{pre_ext}"
+                cmd = f"ffmpeg -i {music_dir}/{filename}{pre_ext} -c:v copy -c:a libmp3lame -q:a 4 {music_dir}/{filename}{ref_ext}; rm -rf {music_dir}/{filename}{pre_ext}"
                 subprocess.Popen(cmd, shell=True, stdout=subprocess.DEVNULL)
                 songset.add(ytID)
                 print("loading song")
