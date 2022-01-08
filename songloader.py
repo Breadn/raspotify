@@ -20,7 +20,7 @@ async def _loadsong_proc(cmds, presong_file, refsong_file):
     # Presong deletion
     os.remove(presong_file)
 
-async def loadsong(music_dir, filename, pre_ext, ref_ext, ytID):
+def loadsong(music_dir, filename, pre_ext, ref_ext, ytID):
     presong_file = f"{music_dir}/{filename}{pre_ext}"
     refsong_file = f"{music_dir}/{filename}{ref_ext}"
     cmds = (
