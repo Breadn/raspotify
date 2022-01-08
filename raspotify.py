@@ -28,13 +28,21 @@ def main():
         print(action)
 
         # do stuff
-        if(action.lower() == "search"):
-            
+        if(action.lower() == "play"):
+            cmd = "play music/Kyoto.mp3"
+            subprocess.Popen(cmd, stdout=subprocess.DEVNULL)
+            queue.pop(0)
+            print("Playing queue")
+        
+        elif(action.lower() == "queue"):
+            print(queue)
+
+        elif(action.lower() == "search"):
             filename = "Kyoto"
             ytID = "cdaKIWr4wDU"
 
             if(ytID not in songset):
-                cmd = f"youtube-dl -o {path}/{filename}{pre_ext} -f 140 https://www.youtube.com/watch?v={ytID}; ffmpeg -i {filename}{pre_ext} -c:v copy -c:a libmp3lame -q:a 4 {filename}{ref_ext}"
+                cmd = f"youtube-dl -o {path}/{filename}{pre_ext} -f 140 https://www.youtube.com/watch?v={ytID}; ffmpeg -i {path}/{filename}{pre_ext} -c:v copy -c:a libmp3lame -q:a 4 {path}/{filename}{ref_ext}; rm -rf {path}/{filename}{pre_ext}"
                 print(cmd)
                 subprocess.Popen(cmd, shell=True, stdout=subprocess.DEVNULL)
                 print("loading song")
