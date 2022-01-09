@@ -31,7 +31,7 @@ def main():
     splashscreen("0.01")
 
     music_dir = "music"
-    ext = ".mp3"
+    ext = "mp3"
     queue = []
     songset = set()
     volume = 0.05
@@ -41,7 +41,7 @@ def main():
 
         if(action == "play"):
             if(queue):
-                song_path = f"{music_dir}/{queue[0]}{ext}"
+                song_path = f"{music_dir}/{queue[0]}.{ext}"
                 if(os.path.isfile(song_path)):
                     cmd = f"play -v {volume} {song_path}"
                     subprocess.Popen(cmd, shell=True, stdout=subprocess.DEVNULL)
