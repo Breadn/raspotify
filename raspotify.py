@@ -34,7 +34,6 @@ def main():
     music_dir = "music"
     ext = "mp3"
     queue = []
-    songset = set()
     volume = 0.05
     action = ""
 
@@ -69,15 +68,9 @@ def main():
             print(queue)
 
         elif(action == "search"):
-            filename = "Kyoto"
-            ytID = "cdaKIWr4wDU"
-
-            if(ytID not in songset):
-                sl.loadsong(filename, ext, ytID)
-                songset.add(ytID)
-            else:
-                print("queueing cached song")
-            queue.append(filename)
+            ytID = "cdaKIWr4wDU" # PLACEHOLDER
+            sl.loadsong(ext, ytID)
+            queue.append("Kyoto")   # PLACEHOLDER
 
 
         print(": ", end='')
