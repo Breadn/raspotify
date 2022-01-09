@@ -3,7 +3,7 @@ import glob
 import shutil
 import subprocess
 
-import songloader as sl
+import songloader
 
 
 def splashscreen(ver):
@@ -16,6 +16,9 @@ def splashscreen(ver):
     print("exit - exit program")
     print("========================")
 
+def start_raspotify(music_dir):
+    splashscreen("0.01")
+    return songloader.SongLoader(music_dir)
 
 def exit_raspotify(music_dir):
     path = f"{os.getcwd()}/{music_dir}"
@@ -28,14 +31,14 @@ def exit_raspotify(music_dir):
 
 
 def main():
-    splashscreen("0.01")
-
     music_dir = "music"
     ext = "mp3"
     queue = []
     songset = set()
     volume = 0.05
     action = ""
+
+    sl = start_raspotify(music_dir)
 
     while(action.lower() != "exit"):
 
