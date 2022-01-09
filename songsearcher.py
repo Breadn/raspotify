@@ -21,13 +21,11 @@ class SongSearcher:
         url = f"{self.query_base}{query.replace(' ', '+')}"
         print(f"Updating response with url: {url}")
         self.response = requests.get(url)
-        print(self.response.content)
 
     def search(self, keywords):
         self._update_response(keywords)
         tree = html.fromstring(self.response.content)
-        print(tree)
-        self.results = tree.xpath('//*[@id="video-title"]')
+        self.results = tree.xpath('//[@id="video-title"]')
         print(self.results)
 
 
