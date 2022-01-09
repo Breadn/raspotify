@@ -1,4 +1,4 @@
-from lxml import html, tostring
+from lxml import html
 import requests
 import re   # I'm sorry, I've relented and am going to feed my soul to cthulhu
 
