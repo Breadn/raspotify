@@ -16,7 +16,7 @@ class SongLoader:
             print(f"Loading song into {self.music_dir}")
             self.songset.add(ytID)
             cmd = f"cd {self.music_dir}; youtube-dl --extract-audio --audio-format {ext} https://www.youtube.com/watch?v={ytID}"
-            subprocess.Popen(args=cmd.split(), stdout=subprocess.DEVNULL)
+            subprocess.Popen(cmd, shell=True, stdout=subprocess.DEVNULL)
         else:
             print("Queueing cached song")
     
