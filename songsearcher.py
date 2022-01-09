@@ -8,7 +8,7 @@ class SongSearcher:
     def __init__(self, query_base):
         self.query_base = query_base
         self.response = None
-        self.results = None
+        self.results = []
         self.select_info = {
             "title":None,
             "ytID":None,

@@ -18,7 +18,7 @@ def splashscreen(ver):
     print("========================")
 
 def start_raspotify(music_dir):
-    splashscreen("0.01")
+    splashscreen("0.30")
     search_baseQuery = "https://www.youtube.com/results?search_query="
     return (songloader.SongLoader(music_dir), songsearcher.SongSearcher(search_baseQuery))
 
