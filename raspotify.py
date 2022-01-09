@@ -75,7 +75,6 @@ def main():
             if(ytID not in songset):
                 sl.loadsong(filename, ext, ytID)
                 songset.add(ytID)
-                print("loading song")
             else:
                 print("queueing cached song")
             queue.append(filename)

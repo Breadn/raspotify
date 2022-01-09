@@ -15,9 +15,8 @@ class SongLoader:
         self.silentsh.terminate()
 
     def loadsong(self, filename, ext, ytID):
-        filepath = f"{self.music_dir}/{filename}.{ext}"
-        print(f"Loading song into {filepath}")
-        cmd = f"youtube-dl -o {filepath} --extract-audio --audio-format {ext} https://www.youtube.com/watch?v={ytID}"
+        print(f"Loading song into {self.music_dir}")
+        cmd = f"youtube-dl --extract-audio --audio-format {ext} https://www.youtube.com/watch?v={ytID}"
         self.silentsh.stdin.write(cmd.encode())
     
     
