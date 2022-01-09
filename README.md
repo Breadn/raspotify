@@ -9,6 +9,7 @@ core dependencies
   
 python dependencies
 ```
+  pip3 install youtube-dl
   pip3 install requests
   pip3 install lxml
 ```
