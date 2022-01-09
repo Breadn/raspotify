@@ -70,7 +70,7 @@ def main():
         elif(action == "search"):
             ytID = "cdaKIWr4wDU" # PLACEHOLDER
             sl.loadsong(ext, ytID)
-            queue.append("Kyoto")   # PLACEHOLDER
+            queue.append("Kyoto (feat. Lamp)-cdaKIWr4wDU")   # PLACEHOLDER
 
 
         print(": ", end='')
