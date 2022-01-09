@@ -24,15 +24,15 @@ class SongSearcher:
 
     def search(self, keywords):
         self._update_response(keywords)
-        etree = html.fromstring(self.response.content)
+        tree = html.fromstring(self.response.content)
 
-        print(etree.tostring())
+        print(tree.tostring())
 
-        test = etree.xpath(f'//*[@id="video-title"]/@title')
+        test = tree.xpath(f'//*[@id="video-title"]/@title')
         print(test)
 
         for i in range(0,self.MAX_RESULTS):
-            self.results.append(etree.xpath(f'(//a[@id="video-title"]/@aria-label)[{i}]'))
+            self.results.append(tree.xpath(f'(//a[@id="video-title"]/@aria-label)[{i}]'))
         print(self.results)
 
 
