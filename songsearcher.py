@@ -1,4 +1,4 @@
-from lxml import html
+from lxml import html, tostring
 import requests
 
 class SongSearcher:
@@ -26,7 +26,7 @@ class SongSearcher:
         self._update_response(keywords)
         tree = html.fromstring(self.response.content)
 
-        print(tree.tostring())
+        print(tostring(tree))
 
         test = tree.xpath(f'//*[@id="video-title"]/@title')
         print(test)
