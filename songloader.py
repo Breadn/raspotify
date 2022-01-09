@@ -5,8 +5,7 @@ class SongLoader:
     
     def __init__(self, music_dir):
         self.music_dir = os.path.join(os.getcwd(), music_dir)
-        self.silentsh = subprocess.Popen("", shell=True, stdin=subprocess.PIPE, 
-                                    stdout=subprocess.DEVNULL, stderr=subprocess.PIPE)
+        self.silentsh = subprocess.Popen("/bin/bash -i".split(), stdout=subprocess.DEVNULL)
         self.silentsh.stdin.write(f"cd {self.music_dir}".encode())
         print(f"Initialized SongLoader into directory {self.music_dir}")
         
