@@ -26,6 +26,9 @@ class SongSearcher:
         self._update_response(keywords)
         tree = html.fromstring(self.response.content)
 
+        test = tree.xpath(f'//*[@id="video-title"]/@title')
+        print(test)
+
         for i in range(0,self.MAX_RESULTS):
             self.results.append(tree.xpath(f'(//a[@id="video-title"]/@aria-label)[{i}]'))
         print(self.results)
