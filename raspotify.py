@@ -73,7 +73,7 @@ def main():
             ytID = "cdaKIWr4wDU"
 
             if(ytID not in songset):
-                sl.loadsong(music_dir, filename, ext, ytID)
+                sl.loadsong(filename, ext, ytID)
                 songset.add(ytID)
                 print("loading song")
             else:
