@@ -4,9 +4,9 @@ import requests
 class SongSearcher:
 
     MAX_RESULTS = 5
-    query_base = "https://www.youtube.com/results?search_query="
 
-    def __init__(self):
+    def __init__(self, query_base):
+        self.query_base = query_base
         self.response
         self.results
         self.select_info = {
@@ -15,6 +15,7 @@ class SongSearcher:
             "duration":None,
             "views":None
         }
+        print(f"Initialized SongSearcher with base query: {self.query_base}")
     
     def _update_response(self, query):
         self.response = requests.get(f"{self.query_base}{query.replace(' ', '+')}")

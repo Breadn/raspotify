@@ -4,6 +4,7 @@ import shutil
 import subprocess
 
 import songloader
+import songsearcher
 
 
 def splashscreen(ver):
@@ -18,7 +19,8 @@ def splashscreen(ver):
 
 def start_raspotify(music_dir):
     splashscreen("0.01")
-    return songloader.SongLoader(music_dir)
+    search_baseQuery = "https://www.youtube.com/results?search_query="
+    return (songloader.SongLoader(music_dir), songsearcher.SongSearcher(search_baseQuery))
 
 def exit_raspotify(music_dir):
     path = f"{os.getcwd()}/{music_dir}"
@@ -37,7 +39,7 @@ def main():
     volume = 0.05
     action = ""
 
-    sl = start_raspotify(music_dir)
+    sl, ss = start_raspotify(music_dir)
 
     while(action.lower() != "exit"):
 
@@ -68,9 +70,11 @@ def main():
             print(queue)
 
         elif(action == "search"):
-            ytID = "cdaKIWr4wDU" # PLACEHOLDER
-            sl.loadsong(ext, ytID)
-            queue.append("Kyoto (feat. Lamp)-cdaKIWr4wDU")   # PLACEHOLDER
+            keywords = input("Enter search: ")
+            ss.search(keywords)
+            # ytID = "cdaKIWr4wDU" # PLACEHOLDER
+            # sl.loadsong(ext, ytID)
+            # queue.append("Kyoto (feat. Lamp)-cdaKIWr4wDU")   # PLACEHOLDER
 
 
         print(": ", end='')
