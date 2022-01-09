@@ -72,9 +72,13 @@ def main():
         elif(action == "search"):
             keywords = input("Enter search: ")
             ss.search(keywords)
-            # ytID = "cdaKIWr4wDU" # PLACEHOLDER
-            # sl.loadsong(ext, ytID)
-            # queue.append("Kyoto (feat. Lamp)-cdaKIWr4wDU")   # PLACEHOLDER
+            ytID = ss.select_info.get("ytID")
+            songname = f'{ss.select_info.get("title")}-{ss.select_info.get("ytID")}'
+
+            sl.loadsong(ext, ytID)
+            
+            print(f"Searched for: {songname}")
+            queue.append(f"{songname}")
 
 
         print(": ", end='')

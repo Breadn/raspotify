@@ -1,5 +1,6 @@
 from lxml import html, tostring
 import requests
+import re   # I'm sorry, I've relented and am going to feed my soul to cthulhu
 
 class SongSearcher:
 
@@ -24,16 +25,15 @@ class SongSearcher:
 
     def search(self, keywords):
         self._update_response(keywords)
-        tree = html.fromstring(self.response.content)
+        htmlstr = self.response.text
+        ytIDs = re.findall(r'watch\?v=(\S{11})', htmlstr)
+        ytTitles_raw = re.findall(r'\"title\":{\"runs\":\[{\"text\":\".+?(?=")', htmlstr)
+        
+        # TODO: limit to max 5 and obtain metadata
 
-        print(tostring(tree))
-
-        test = tree.xpath(f'//*[@id="video-title"]/@title')
-        print(test)
-
-        for i in range(0,self.MAX_RESULTS):
-            self.results.append(tree.xpath(f'(//a[@id="video-title"]/@aria-label)[{i}]'))
-        print(self.results)
+        # TODO: encapsulate into select fn
+        self.select_info.update("title", re.findall(r'"text":.+', ytTitles_raw[0])[0].split('":"')[1])
+        self.select_info.update("ytID", ytIDs[0])
 
 
 
