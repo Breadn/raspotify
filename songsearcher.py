@@ -32,8 +32,8 @@ class SongSearcher:
         # TODO: limit to max 5 and obtain metadata
 
         # TODO: encapsulate into select fn
-        self.select_info.update("title", re.findall(r'"text":.+', ytTitles_raw[0])[0].split('":"')[1])
-        self.select_info.update("ytID", ytIDs[0])
+        self.select_info.put("title", re.findall(r'"text":.+', ytTitles_raw[0])[0].split('":"')[1])
+        self.select_info.put("ytID", ytIDs[0])
 
 
 
