@@ -3,7 +3,7 @@ import subprocess
 
 class SongLoader:
     
-    songset: set
+    songset = set()
 
     def __init__(self, music_dir):
         self.music_dir = os.path.join(os.getcwd(), music_dir)
